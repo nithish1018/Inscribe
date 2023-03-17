@@ -2,10 +2,27 @@ from flask import Flask, request, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
+f = open('userid.txt', 'w')
+f.close()
+
+def writeFile(string):
+    f = open('userid.txt', 'w')
+    f.write(string)
+    f.close()
+
+def readFile():
+    f = open('userid.txt', 'r')
+    return int(f.readline())
+
+def ClearFile():
+    f= open('userid.txt','w')
+    f.seek(0) 
+    f.truncate() 
+
 app = Flask(__name__)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///notes.db'
 db = SQLAlchemy(app)
-
 class User(db.Model):
     __tableName__='user'
     id = db.Column(db.Integer, primary_key=True)
@@ -19,14 +36,17 @@ class Note(db.Model):
     content = db.Column(db.Text)
 with app.app_context():
     db.create_all()
+with app.app_context():
+    users=User.query.all()
 
 @app.route('/')
 def landing():    
     return render_template('index.html')
 @app.route('/notes')
-def index():
-    # notes = Note.query.all()
-    return render_template('notes.html')
+def notes():
+    userId=readFile()
+    notes=Note.query.filter_by(user_id=userId).first()
+    return render_template('notes.html',note=notes)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -40,6 +60,9 @@ def signup():
         user = User(username=username, password=hashed_password)
         db.session.add(user)
         db.session.commit()
+        user = User.query.filter_by(username=username).first()
+        userId=str(user.id)
+        writeFile(userId)
         return redirect('/notes')
     return render_template('signup.html')
 
@@ -51,7 +74,9 @@ def login():
         user_exists = User.query.filter_by(username=username).first()
         if not user_exists or not check_password_hash(user_exists.password,password):
             return "Invalid credentials"
-          
+        user= User.query.filter_by(username=username).first()
+        userId=str(user.id)
+        writeFile(userId)
         return redirect('/notes')
     
     return render_template('login.html')
@@ -61,7 +86,8 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
-        note = Note(title=title, content=content)
+        userId=readFile()
+        note = Note(user_id=userId,title=title, content=content)
         db.session.add(note)
         db.session.commit()
         return redirect('/notes')
@@ -86,6 +112,11 @@ def delete(id):
     db.session.delete(note)
     db.session.commit()
     return redirect('/notes')
+@app.route('/signout')
+def signout():
+    ClearFile()
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)
+    userId=''
