@@ -47,7 +47,10 @@ def landing():
 def notes():
     userId=readFile()
     notes=Note.query.filter_by(user_id=userId).all()
-    return render_template('notes.html',note=notes)
+    data={}
+    for item in notes:
+        data[item.title]=item.content      
+    return render_template('notes.html',note=notes,usernotes=data)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
