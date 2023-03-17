@@ -98,13 +98,14 @@ def create():
     return render_template('create.html')
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
 def update(id):
-    note = Note.query.get(id)
+    note = Note.query.filter_by(id=id).first()
+    currentId=readFile()
     if request.method == 'POST':
         note.title = request.form['title']
         note.content = request.form['content']
         db.session.commit()
         return redirect('/notes')
-    return render_template('update.html', note=note)
+    return render_template('update.html', note=note,id=currentId)
 @app.route('/delete/<int:id>')
 def delete(id):
     note = Note.query.get(id)
