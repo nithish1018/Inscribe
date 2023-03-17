@@ -8,9 +8,11 @@
 </head>
 <body>
     <h1>  your notes:</h1>
-    {% for item in notes %}
+   {% for item in note %}
+    
+  
     <li><a>{{ item.title }} {{ item.content }}</a></li>
-{% endfor %}
+    {% endfor %}
 <a href="/create" > Add new notes here huhuh</a>
 <a href="/signout"> signout avvu bro</a>
 </body>

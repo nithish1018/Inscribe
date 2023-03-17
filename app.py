@@ -45,7 +45,7 @@ def landing():
 @app.route('/notes')
 def notes():
     userId=readFile()
-    notes=Note.query.filter_by(user_id=userId).first()
+    notes=Note.query.filter_by(user_id=userId).all()
     return render_template('notes.html',note=notes)
 
 @app.route('/signup', methods=['GET', 'POST'])
