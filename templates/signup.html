@@ -6,8 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="w-full h-full overflow-hidden" style="background-image: url(/static/img/bg.svg);">
-    <div  class="py-10 relative flex  text-gray-900 flex-col justify-center overflow-hidden">
+<body class="overflow-hidden dark:bg-gray-900">
+    <div class="w-full navbar">
+        <nav
+            class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+            <div class="container flex flex-wrap items-center justify-between mx-auto">
+                <a href="/" class="flex items-center">
+                    <img src="/static/images/logo.png" class="object-cover h-16 mr-7" alt="Logo">
+                </a>
+                <div class="flex md:order-2">
+                    <a href="/login"><button type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get
+                        started</button></a>
+                    <button data-collapse-toggle="navbar-sticky" type="button"
+                        class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        aria-controls="navbar-sticky" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+    <div class="py-40">
+    <div  class="relative flex  text-gray-900 flex-col justify-center overflow-hidden">
         <div class="relative py-15 sm:w-auto mx-auto text-center">
             <span class="text-2xl font-semibold px-8 text-white">Create a new Account</span>
             <div class="mt-4 bg-gray-50 bg-opacity-80 shadow-md rounded-lg text-left">
@@ -20,10 +48,14 @@
                     <button type="submit" class="mt-6 bg-green-600 w-full text-white py-2 px-6 rounded-md hover:bg-blue-800 ">Create account</button>
                 </form>
             </div>
-            <div class="mt-4 text-white">
-                <p>have an account?</p><a href="/login" class="text-sm">Login</a>
-            </div>
         </div>
     </div>
+            <div class="flex mx-auto justify-center text-white py-3">
+                <p>have an account?</p>
+            </div>
+            <div class="flex mx-auto justify-center text-white">
+                <a  href="/login">Login</a>
+            </div>
+        </div>
 </body>
 </html>
