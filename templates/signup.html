@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-full h-full overflow-hidden" style="background-image: url(/static/img/bg.svg);">
+    <div  class="py-10 relative flex  text-gray-900 flex-col justify-center overflow-hidden">
+        <div class="relative py-15 sm:w-auto mx-auto text-center">
+            <span class="text-2xl font-semibold px-8 text-white">Create a new Account</span>
+            <div class="mt-4 bg-gray-50 bg-opacity-80 shadow-md rounded-lg text-left">
+                <form action="/signup" method="post" class="px-8 py-6">
+         
+                    <label for="username" class="block mt-3 font-semibold">UserName</label>
+                    <input id="username" name="username" type="username" placeholder="Email" class="border w-full h-5 px-3 py-5 mt-2 bg-gray-50 bg-opacity-80" required>
+                    <label for="password" class="block mt-3 font-semibold">Password</label>
+                    <input id="password" name="password" type="password" placeholder="Password" class="border w-full h-5 px-3 py-5 mt-2 bg-gray-50 bg-opacity-80" required>
+                    <button type="submit" class="mt-6 bg-green-600 w-full text-white py-2 px-6 rounded-md hover:bg-blue-800 ">Create account</button>
+                </form>
+            </div>
+            <div class="mt-4 text-white">
+                <p>have an account?</p><a href="/login" class="text-sm">Login</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
