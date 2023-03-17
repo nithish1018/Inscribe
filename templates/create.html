@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-full h-full overflow-visible" style="background-image: url(/static/img/bg.svg);">
+    <div class="py-20 relative flex text-gray-900 flex-col justify-center overflow-hidden">
+        <div class="relative py-3 sm:w-auto mx-auto text-center">
+            <span class="text-2xl font-semibold px-8  text-white">Login to your account</span>
+            <div class="mt-4 bg-gray-50 bg-opacity-80 shadow-md rounded-lg text-left">
+                <form action="/create" method="post" class="px-8 py-6">
+                    <label for="title" class="block mt-3 font-semibold">Title</label>
+                    <input id="title" name="title" type="text" placeholder="title" class="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-blue-500 focus:ring-1 rounded-md" required>
+                    <label for="content" class="block mt-3 font-semibold">Content</label>
+                    <input id="content" name="content" type="textfield" placeholder="content" class="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-blue-500 focus:ring-1 rounded-md" required>
+                    <button type="submit" class="mt-6 w-full bg-green-600 text-white py-2 px-6 rounded-md hover:bg-blue-800 ">Add Note</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

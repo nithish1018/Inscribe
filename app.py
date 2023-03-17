@@ -25,8 +25,8 @@ def landing():
     return render_template('index.html')
 @app.route('/notes')
 def index():
-    notes = Note.query.all()
-    return render_template('notes.html', notes=notes)
+    # notes = Note.query.all()
+    return render_template('notes.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -66,7 +66,6 @@ def create():
         db.session.commit()
         return redirect('/notes')
     return render_template('create.html')
-
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
 def update(id):
     note = Note.query.get(id)
@@ -76,15 +75,11 @@ def update(id):
         db.session.commit()
         return redirect('/notes')
     return render_template('update.html', note=note)
-@app.route('/notes/<int:id>', methods=['GET', 'POST'])
-def oneNote(id):
-    note=Note.query.get(id)
-    myNote=note.content
-    return redirect('/notes', note=myNote)
-
-
-
-
+# @app.route('/notes/<int:id>', methods=['GET', 'POST'])
+# def oneNote(id):
+#     note=Note.query.get(id)
+#     myNote=note.content
+#     return redirect('/notes', note=myNote)
 @app.route('/delete/<int:id>')
 def delete(id):
     note = Note.query.get(id)
