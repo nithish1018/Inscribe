@@ -12,7 +12,8 @@ def writeFile(string):
 
 def readFile():
     f = open('userid.txt', 'r')
-    return int(f.readline())
+    v=f.readline()
+    return int(v)
 
 def ClearFile():
     f= open('userid.txt','w')
@@ -101,11 +102,6 @@ def update(id):
         db.session.commit()
         return redirect('/notes')
     return render_template('update.html', note=note)
-# @app.route('/notes/<int:id>', methods=['GET', 'POST'])
-# def oneNote(id):
-#     note=Note.query.get(id)
-#     myNote=note.content
-#     return redirect('/notes', note=myNote)
 @app.route('/delete/<int:id>')
 def delete(id):
     note = Note.query.get(id)
